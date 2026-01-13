@@ -1,0 +1,8 @@
+-- select all building and add some tags as layer properties
+SELECT
+    ST_AsMVTGeom(geom, {{unbuffered_bbox}}, {{extent}}, {{buffer}}) AS way,
+    tags ->> 'building' AS building,
+    tags ->> 'amenity' AS amenity,
+    tags ->> 'source' AS source
+  FROM building
+  WHERE building.geom && {{bbox}}

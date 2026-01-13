@@ -1,0 +1,11 @@
+-- select all amenity and add some tags as layer properties
+SELECT
+    ST_AsMVTGeom(geom, {{unbuffered_bbox}}, {{extent}}, {{buffer}}) AS way,
+    id AS id,
+    osm_type AS nwr,
+    tags->>'amenity' AS amenity,
+    tags->>'name' AS name,
+    tags->>'opening_hours' AS opening_hours,
+    tags->>'material' AS material
+FROM amenity
+WHERE geom && {{bbox}}

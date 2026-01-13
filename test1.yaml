@@ -1,0 +1,28 @@
+---
+metadata:
+    attribution: <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap</a>
+    id: test_v1
+    name: Test
+    description: Test spirit using all OSM DB
+    version: 0.1
+
+# layers for the test
+vector_layers:
+    # Buildings
+    buildings:
+        description: Has polygons for every building
+        sql:
+            - minzoom: 14
+              maxzoom: 14
+              extent: 4096
+              buffer: 8
+              file: test1/buildings.sql.jinja2
+
+    # Points of interest : amenity
+    amenity:
+        description: nodes with amenity tag
+        fields:
+        sql:
+            - minzoom: 13
+              maxzoom: 14
+              file: test1/amenity.sql.jinja2
